@@ -28,8 +28,21 @@ function App() {
     }
   }
 
+  const saveLocalTodos = () => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }
+
+  const getLocalTodos = () => {
+    if (localStorage.getItem('todos')) {
+      const localTodos = JSON.parse(localStorage.getItem('todos'))
+      setTodos(localTodos)
+    }
+  }
+
   // Effect
+  useEffect(getLocalTodos, [])
   useEffect(filterHandler, [todos, filter])
+  useEffect(saveLocalTodos, [todos])
 
   // JSX
   return (
