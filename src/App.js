@@ -39,6 +39,19 @@ function App() {
     }
   }
 
+  const updateTodo = (id, text) => {
+    setTodos(todos.map(item => {
+      if ( item.id === id) {
+        return {
+          ...item, text,
+          completed: false
+        }
+      }
+
+      return item
+    }))
+  }
+
   // Effect
   useEffect(getLocalTodos, [])
   useEffect(filterHandler, [todos, filter])
@@ -51,7 +64,7 @@ function App() {
         ToDo List
       </header>
       <Form inputText={inputText} setInputText={setInputText} todos={todos} setTodos={setTodos} filter={filter} setFilter={setFilter}/>
-      <Todos filteredTodos={filteredTodos} todos={todos} setTodos={setTodos}/>
+      <Todos filteredTodos={filteredTodos} todos={todos} setTodos={setTodos} updateTodo={updateTodo}/>
     </div>
   )
 }

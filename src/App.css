@@ -58,6 +58,20 @@ form button:hover {
   align-items: center;
   transition: all 1s ease;
 }
+.todo label,
+.todo input {
+  margin-right: auto;
+}
+.todo input {
+  line-height: 32px;
+  max-width: 300px;
+  border-radius: 0px;
+  outline: none;
+  border: none;
+  background: none;
+  padding-left: 0.5rem;
+  font: inherit;
+}
 .filter-todo {
   padding: 1rem;
 }
