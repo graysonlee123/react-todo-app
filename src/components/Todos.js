@@ -7,8 +7,14 @@ const Todos = ({ todos, setTodos, filteredTodos, updateTodo }) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {filteredTodos.map(todo => (
-          <Todo todo={todo} todos={todos} setTodos={setTodos} updateTodo={updateTodo} key={todo.id}/>
+        {filteredTodos.map((todo) => (
+          <Todo
+            todo={todo}
+            todos={todos}
+            setTodos={setTodos}
+            updateTodo={updateTodo}
+            key={todo.id}
+          />
         ))}
       </ul>
     </div>

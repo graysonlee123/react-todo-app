@@ -1,31 +1,31 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-const Todo = ({todo, todos, setTodos, updateTodo}) => {
+const Todo = ({ todo, todos, setTodos, updateTodo }) => {
   const [showInput, setShowInput] = useState(false)
   const [text, setText] = useState(todo.text)
 
   const deleteHandler = () => {
-    setTodos(todos.filter(item => 
-      todo.id !== item.id
-    ))
+    setTodos(todos.filter((item) => todo.id !== item.id))
   }
 
   const completeHandler = () => {
-    setTodos(todos.map(item => {
-      if (item.id === todo.id) {
-        return {
-          ...item,
-          completed: !item.completed
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return {
+            ...item,
+            completed: !item.completed,
+          }
         }
-      } 
-      
-      return item
-    }))
+
+        return item
+      })
+    )
   }
-  
+
   const handleLabelClick = (e) => {
     setShowInput(true)
-    
+
     setTimeout(() => {
       const input = document.getElementById(todo.id)
       input.focus()
@@ -39,7 +39,7 @@ const Todo = ({todo, todos, setTodos, updateTodo}) => {
   const handleBlur = (e) => {
     submitChange()
   }
-  
+
   const handleEnter = (e) => {
     if (e.key !== 'Enter') return
     submitChange()
@@ -52,10 +52,31 @@ const Todo = ({todo, todos, setTodos, updateTodo}) => {
 
   return (
     <li className="todo">
-      {!showInput && <label className={`todo-item ${todo.completed ? 'completed' : ''}`} htmlFor={todo.id} onClick={handleLabelClick}>{todo.text}</label>}
-      {showInput && <input type="text" id={todo.id} value={text} onChange={handleChange} onBlur={handleBlur} onKeyUp={handleEnter}/>}
-      <button className="complete-btn" onClick={completeHandler}><i className="fas fa-check"></i></button>
-      <button className="trash-btn" onClick={deleteHandler}><i className="fas fa-trash"></i></button>
+      {!showInput && (
+        <label
+          className={`todo-item ${todo.completed ? 'completed' : ''}`}
+          htmlFor={todo.id}
+          onClick={handleLabelClick}
+        >
+          {todo.text}
+        </label>
+      )}
+      {showInput && (
+        <input
+          type="text"
+          id={todo.id}
+          value={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          onKeyUp={handleEnter}
+        />
+      )}
+      <button className="complete-btn" onClick={completeHandler}>
+        <i className="fas fa-check"></i>
+      </button>
+      <button className="trash-btn" onClick={deleteHandler}>
+        <i className="fas fa-trash"></i>
+      </button>
     </li>
   )
 }
